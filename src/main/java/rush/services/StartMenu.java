@@ -1,11 +1,6 @@
 package main.java.rush.services;
 
-
-import main.java.rush.Data.Alphabet;
-
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class StartMenu {
 

@@ -1,11 +1,9 @@
 package main.java.rush.services;
 
-import main.java.rush.Data.Alphabet;
 import main.java.rush.exceptions.FileNotExistsException;
 import main.java.rush.exceptions.WrongInputException;
 
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 public class DataInputOutput {
     private final Validator validator;
@@ -13,6 +11,7 @@ public class DataInputOutput {
     public DataInputOutput() {
         validator = new Validator();
     }
+
 
     public void dataInputOutput(String operationId) {
         String firstNameOfFile = "";
@@ -45,11 +44,20 @@ public class DataInputOutput {
             // read first file
             FileManager fileManager = new FileManager();
             String text = fileManager.readFile(firstNameOfFile);
-//            System.out.println(text);
             // coding text
-            String cryptText = encoderDecoder.cryptText(text, Integer.parseInt(shift));
+            String cryptText = encoderDecoder.encryptText(text, Integer.parseInt(shift));
             // write codding text to second file
             fileManager.writeFile(cryptText, secondNameOfFile);
+        }
+        // if menu item == "2" call decode method
+        if (operationId.equals("2")) {
+            // read first file
+            FileManager fileManager = new FileManager();
+            String text = fileManager.readFile(firstNameOfFile);
+            // coding text
+            String encryptText = encoderDecoder.decryptText(text, Integer.parseInt(shift));
+            // write codding text to second file
+            fileManager.writeFile(encryptText, secondNameOfFile);
         }
     }
 }

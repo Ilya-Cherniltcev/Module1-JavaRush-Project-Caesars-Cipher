@@ -13,14 +13,18 @@ import java.util.logging.Logger;
 public class FileManager {
     private static final Logger logger = Logger.getLogger("FileManager logger");
 
-
+    /**
+     * Read data from file
+     *
+     * @param filePath path of file
+     * @return readed data in string
+     */
     public String readFile(String filePath) {
         int counter = 1;
         StringBuilder builder = new StringBuilder();
         try (BufferedReader reader = Files.newBufferedReader(Path.of(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-//                logger.info(STR."String \{counter} has read");
                 builder.append(line);
                 counter++;
             }
@@ -31,6 +35,12 @@ public class FileManager {
         return builder.toString();
     }
 
+    /**
+     * Write data to file
+     *
+     * @param content data to write
+     * @param filePath path of file
+     */
     public void writeFile(String content, String filePath) {
         Validator validator = new Validator();
         try (BufferedWriter writer = Files.newBufferedWriter(Path.of(filePath))) {
